@@ -4,6 +4,7 @@ import AddLearn from "./AddLearn"
 import Search from "./Search";
 import {useState} from 'react';
 import {useEffect } from 'react';
+import background from "../images/background.jpg"
 
 function LearnContainer() {
     const[ learnItems, setLearnItems ] = useState ([]);
@@ -27,12 +28,12 @@ function LearnContainer() {
     });
 
     return (
-        <div>
+        <div className= "LearnContainer"
+        style = {{backgroundImage: `url(${background})`}}>
             <Search searchTerm = {searchTerm} onSearchChange = {setSearchTerm} />
             <AddLearn onAddLearn = {handleAddLearnItems}/>
             <LearnList 
             learnItems = {displayedLearnItems}/>
-            
         </div>
     )
 };

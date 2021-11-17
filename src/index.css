@@ -18,41 +18,15 @@ code {
   box-sizing: border-box;
 }
 
-.learn-card {
-  list-style: none;
+h1 {
+  color: rgb(0, 0, 0);
 }
-
-.learn-card {
-  margin: 1rem;
+p {
+  color: rgb(0, 0, 0);
 }
-
-.learn-card img {
-  width: 100%;
+h2 {
+  color: rgb(0, 0, 0);
 }
-
-.card button {
-  margin-top: 0.5rem;
-}
-
-@media (min-width: 768px) {
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .learn-card {
-    width: calc(33% - 2rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .learn-card {
-    width: calc(25% - 2rem);
-  }
-}
-
-@media (min-width: 1200px) {
-  .learn-card {
-    width: calc(20% - 2rem);
-  }
+h3 {
+  color: rgb(0, 0, 0);
 }

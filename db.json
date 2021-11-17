@@ -4,64 +4,43 @@
       "id": 1,
       "name": "Using React",
       "description": "Learn the Basics of React",
-      "Image": "./react.png",
+      "Image": "https://www.mobinius.com/wp-content/uploads/2020/02/reactjs-2.png",
       "URL": "https://reactjs.org/community/articles.html"
     },
     {
       "id": 2,
-      "name": "Test",
-      "description": "Lorem Ipsum, Lorem Ipsum ",
-      "Image": "",
-      "URL": ""
+      "name": "Flatiron School Bash Commands",
+      "description": "Simple bash commands to help with forking repo’s and pushing commits.",
+      "Image": "https://miro.medium.com/max/1400/1*ISAjTNGIY00nhVZt_p8ILQ.png",
+      "URL": "https://nirajpatel23.medium.com/flatiron-school-bash-commands-daf708e2e3ea"
     },
     {
       "id": 3,
-      "name": "Test 3 ",
-      "description": "Description for test 3 ",
-      "Image": "",
-      "URL": ""
+      "name": "Useful Mac Shortcuts in VS Code",
+      "description": "Useful Mac Shortcuts in VS Code",
+      "Image": "https://miro.medium.com/max/700/0*WWlrQgpU5ECWlnHc",
+      "URL": "https://medium.com/@mtoth003/useful-mac-shortcuts-in-vs-code-51d794636fac"
     },
     {
       "id": 4,
-      "name": "Test 4 ",
-      "description": "Description for test 4 ",
-      "Image": "",
-      "URL": ""
+      "name": "For… what? Simple Iteration of Objects and Arrays ",
+      "description": "Iteration of Objects and Arrays",
+      "Image": "https://miro.medium.com/max/960/1*Eou3QWGAOPfhjsXcu45TOw.gif",
+      "URL": "https://medium.com/@loujacob2/for-what-simple-iteration-of-objects-and-arrays-d13efb2358cd"
     },
     {
       "id": 5,
-      "name": "Test 5 ",
-      "description": "description for test 5",
-      "Image": "",
-      "URL": ""
+      "name": "React JS Crash Course 2021",
+      "description": "React Crash Course for beginners",
+      "Image": "https://cdn.vox-cdn.com/thumbor/r3AM_q5ktTjtd8gjoFwpAakshaA=/0x0:1680x1050/1400x1050/filters:focal(706x391:974x659):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/56414325/YTLogo_old_new_animation.0.gif",
+      "URL": "https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=1268s"
     },
     {
-      "id": 6,
-      "name": "Test 6 ",
-      "description": "Description for test 6",
-      "Image": "",
-      "URL": ""
-    },
-    {
-      "id": 7,
-      "name": "Test 7 ",
-      "description": "Description for test 7 ",
-      "Image": "",
-      "URL": ""
-    },
-    {
-      "name": "",
-      "description": "",
-      "image": "",
-      "URL": "",
-      "id": 8
-    },
-    {
-      "name": "",
-      "description": "",
-      "image": "",
-      "URL": "",
-      "id": 9
+      "name": "test",
+      "description": "test",
+      "image": "test",
+      "URL": "test",
+      "id": 6
     }
   ]
 }

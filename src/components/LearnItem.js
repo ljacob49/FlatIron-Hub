@@ -2,13 +2,12 @@ import React from "react";
 
 function LearnItem ({learnItem}) {
     return(
-        <li className = "learn-cards">
-             <img src={learnItem.image} alt={learnItem.name} />
-             <h3>{learnItem.name}</h3>
+        <ul className = "learn-cards">
+             <h2>{learnItem.name}</h2>
              <p>Description: {learnItem.description}</p>
+             <img src={learnItem.Image} />
              <p>Link to Resource: {learnItem.URL} </p>
-         </li>
-      
+         </ul>
     )
 }
 
