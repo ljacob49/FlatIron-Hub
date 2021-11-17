@@ -1,0 +1,67 @@
+{
+  "learnItems": [
+    {
+      "id": 1,
+      "name": "Using React",
+      "description": "Learn the Basics of React",
+      "Image": "./react.png",
+      "URL": "https://reactjs.org/community/articles.html"
+    },
+    {
+      "id": 2,
+      "name": "Test",
+      "description": "Lorem Ipsum, Lorem Ipsum ",
+      "Image": "",
+      "URL": ""
+    },
+    {
+      "id": 3,
+      "name": "Test 3 ",
+      "description": "Description for test 3 ",
+      "Image": "",
+      "URL": ""
+    },
+    {
+      "id": 4,
+      "name": "Test 4 ",
+      "description": "Description for test 4 ",
+      "Image": "",
+      "URL": ""
+    },
+    {
+      "id": 5,
+      "name": "Test 5 ",
+      "description": "description for test 5",
+      "Image": "",
+      "URL": ""
+    },
+    {
+      "id": 6,
+      "name": "Test 6 ",
+      "description": "Description for test 6",
+      "Image": "",
+      "URL": ""
+    },
+    {
+      "id": 7,
+      "name": "Test 7 ",
+      "description": "Description for test 7 ",
+      "Image": "",
+      "URL": ""
+    },
+    {
+      "name": "",
+      "description": "",
+      "image": "",
+      "URL": "",
+      "id": 8
+    },
+    {
+      "name": "",
+      "description": "",
+      "image": "",
+      "URL": "",
+      "id": 9
+    }
+  ]
+}
