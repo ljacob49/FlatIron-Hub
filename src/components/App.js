@@ -6,6 +6,8 @@ import LoginScreen from "./Chat/LoginScreen"
 import Home from './Home/Home'
 import VideoChat from "./VideoChat/VideoChat"
 import DevPage from './Devs/DevPage'
+import Learn from "./Learn/Learn"
+import GamesPage from "./Games/GamesPage"
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/home" exact component={Home} /> 
             <Route path='/videochat' component={VideoChat} />
             <Route path="/devs" component={DevPage} />
+            <Route path="/learn" component={Learn} />
+            <Route path="/games" component={GamesPage} />
             <Route path="/chats" component={Chats} />
             <Route path="/login" component={LoginScreen} />
           </AuthProvider>

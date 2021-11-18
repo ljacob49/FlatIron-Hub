@@ -1,155 +1,103 @@
-import React, { useEffect, useRef, useState } from "react"
-import Button from "@material-ui/core/Button"
-import IconButton from "@material-ui/core/IconButton"
-import TextField from "@material-ui/core/TextField"
-import AssignmentIcon from "@material-ui/icons/Assignment"
-import PhoneIcon from "@material-ui/icons/Phone"
-import { CopyToClipboard } from "react-copy-to-clipboard"
-import Peer from "simple-peer"
-import io from "socket.io-client"
+import { useEffect, useRef, useState } from 'react';
+import Peer from 'peerjs';
+import NavBar from '../Home/NavBar';
+import Video from '../../videos/Video.mp4'
+import { MarvelDevices } from "react-css-devices";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const socket = io("https://warm-wildwood-81069.herokuapp.com");
 
-const VideoChat = ( ) => {
-  const [callAccepted, setCallAccepted] = useState(false);
-  const [callEnded, setCallEnded] = useState(false);
-  const [stream, setStream] = useState();
-  const [name, setName] = useState("");
-  const [call, setCall] = useState({});
-  const [me, setMe] = useState("");
-  const [idToCall, setIdToCall] = useState("");
-
-  const myVideo = useRef();
-  const userVideo = useRef();
-  const connectionRef = useRef();
+function VideoChat() {
+  const [peerId, setPeerId] = useState('');
+  const [remotePeerIdValue, setRemotePeerIdValue] = useState('');
+  const remoteVideoRef = useRef(null);
+  const currentUserVideoRef = useRef(null);
+  const peerInstance = useRef(null);
 
   useEffect(() => {
-     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-      .then((stream) => {
-        setStream(stream);
-        myVideo.current.srcObject = stream;
+    const peer = new Peer();
+
+    peer.on('open', (id) => {
+      setPeerId(id)
+    });
+    
+    peer.on('call', (call) => {
+      var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+      getUserMedia({ video: true, audio: true }, (mediaStream) => {
+        currentUserVideoRef.current.srcObject = mediaStream;
+        currentUserVideoRef.current.play();
+        call.answer(mediaStream)
+        call.on('stream', function(remoteStream) {
+          remoteVideoRef.current.srcObject = remoteStream
+          remoteVideoRef.current.play();
+        });
+        call.on('close', () => {
+            remoteVideoRef.current.remove()
+        })
+      });
+    })
+
+    peerInstance.current = peer;
+  }, [])
+
+  const call = (remotePeerId) => {
+    var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    getUserMedia({ video: true, audio: true }, (mediaStream) => {
+
+      currentUserVideoRef.current.srcObject = mediaStream;
+      currentUserVideoRef.current.play();
+      const call = peerInstance.current.call(remotePeerId, mediaStream)
+
+      call.on('stream', (remoteStream) => {
+        remoteVideoRef.current.srcObject = remoteStream
+        remoteVideoRef.current.play();
       });
 
-    socket.on("me", (id) => setMe(id));
-
-    socket.on("callUser", ({ from, name: callerName, signal }) => {
-      setCall({ isReceivingCall: true, from, name: callerName, signal });
+      call.on('close', () => {
+          remoteVideoRef.current.remove()
+      })
     });
-  }, []);
+  }
 
-  const answerCall = () => {
-    setCallAccepted(true);
-
-    const peer = new Peer({ initiator: false, trickle: false, stream });
-
-    peer.on("signal", (data) => {
-      socket.emit("answerCall", { signal: data, to: call.from });
-    });
-
-    peer.on("stream", (currentStream) => {
-      userVideo.current.srcObject = currentStream;
-    });
-
-    peer.signal(call.signal);
-
-    connectionRef.current = peer;
-  };
-
-  const callUser = (id) => {
-    const peer = new Peer({ initiator: true, trickle: false, stream });
-
-    peer.on("signal", (data) => {
-      socket.emit("callUser", {
-        userToCall: id,
-        signalData: data,
-        from: me,
-        name,
-      });
-    });
-
-    peer.on("stream", (currentStream) => {
-      userVideo.current.srcObject = currentStream;
-    });
-
-    socket.on("callAccepted", (signal) => {
-      setCallAccepted(true);
-
-      peer.signal(signal);
-    });
-
-    connectionRef.current = peer;
-  };
-
-  const leaveCall = () => {
-    setCallEnded(true);
-
-    connectionRef.current.destroy();
-
-    window.location.reload();
-  };
-
-
-	return (
-		<div>
-		<h1 style={{ textAlign: "center", color: '#fff' }}>FlatIron Video Chat</h1>
-		<div className="container">
-			<div className="video-container">
-				<div className="video">
-					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
-				</div>
-				<div className="video">
-					{callAccepted && !callEnded ?
-					<video playsInline ref={userVideo} autoPlay style={{ width: "300px"}} />:
-					null}
-				</div>
-			</div>
-			<div className="myId">
-				<TextField
-					id="filled-basic"
-					label="Name"
-					variant="filled"
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					style={{ marginBottom: "20px" }}
-				/>
-				<CopyToClipboard text={me} style={{ marginBottom: "2rem" }}>
-					<Button variant="contained" color="primary" startIcon={<AssignmentIcon fontSize="large" />}>
-						Copy ID
-					</Button>
-				</CopyToClipboard>
-
-				<TextField
-					id="filled-basic"
-					label="ID to call"
-					variant="filled"
-					value={idToCall}
-					onChange={(e) => setIdToCall(e.target.value)}
-				/>
-				<div className="call-button">
-					{callAccepted && !callEnded ? (
-						<Button variant="contained" color="secondary" onClick={leaveCall}>
-							End Call
-						</Button>
-					) : (
-						<IconButton color="primary" aria-label="call" onClick={() => callUser(idToCall)}>
-							<PhoneIcon fontSize="large" />
-						</IconButton>
-					)}
-				</div>
-			</div>
-			<div>
-				{call.isReceivingCall && !callAccepted ? (
-						<div className="caller">
-						<h1 >{name} is calling...</h1>
-						<Button variant="contained" color="primary" onClick={answerCall}>
-							Answer
-						</Button>
-					</div>
-				) : null}
-			</div>
-		</div>
-		</div>
-	)
+  return (
+<>
+<div id="home-container">
+   <div id="home-bg">
+      <video id="home-video" autoPlay loop muted src={Video} type='video/mp4'>
+      </video>
+   </div>
+   <div id='nav-container'>
+      <NavBar/>
+   </div>
+   <div id='video-container'>
+      <MarvelDevices deviceName={"ipad"} color={"gray"} orientation={"landscape"} transform={0.5}>
+         <video className='video-id-ipad' fluid={false} width={100} height={50} ref={remoteVideoRef} />
+      </MarvelDevices>
+   </div>
+   <div id='video2-container'>
+      <MarvelDevices deviceName={"ipad"} color={"gray"} orientation={"landscape"} transform={0.5} >
+         <video className='video-id-ipad' ref={currentUserVideoRef} />
+      </MarvelDevices>
+   </div>
+   <div id='video-title-container'>
+      <CopyToClipboard text={peerId}>
+         <button>Copy User ID</button>
+      </CopyToClipboard>
+   </div>
+   <div id='video3-container'>
+      <input type="text" value={remotePeerIdValue} onChange={e => setRemotePeerIdValue(e.target.value)} />
+      <button onClick={() => call(remotePeerIdValue)}>Call</button>
+      <button onClick={() => call(!remotePeerIdValue)}>Hang Up</button>
+   </div>
+</div>
+</>
+  )
 }
 
+
+
+
+
 export default VideoChat;
+
