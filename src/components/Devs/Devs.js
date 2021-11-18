@@ -60,6 +60,9 @@ const Devs = () => {
                 I'm passionate about developing my skills to become a better developer.
             </section>
             <section className="social-card-section">
+                <a href="https://medium.com/@loujacob2" target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={['fab', 'medium']} className="social-card-style" />
+                </a>
                 <a href="https://www.linkedin.com/in/louis-jacob-b30b04b2/" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={['fab', 'linkedin']} className="social-card-style" />
                 </a>

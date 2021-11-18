@@ -5,7 +5,7 @@ import {GoBrowser} from 'react-icons/go'
 function GamesCard({gamesObj:{thumbnail, title, short_description, genre, platform, freetogame_profile_url}}){
     
 const truncateDesc = (input) => input.length > 55 ? `${input.substring(0, 55)}...` : input;
-const truncateTitle = (input) => input.length > 15 ? `${input.substring(0, 15)}...` : input;
+const truncateTitle = (input) => input.length > 20 ? `${input.substring(0, 20)}...` : input;
 
 const iconRender = (input) => {
     if(input === 'PC (Windows)'){
@@ -50,7 +50,7 @@ const Card = styled.div`
     .title{
         float: left;
         color: white;
-        font-size: 1rem;
+        font-size: 1.1rem;
         padding: 5px;
         font-family: 'Lemonada', cursive;
     }
@@ -58,15 +58,15 @@ const Card = styled.div`
         float: right;
         color: white;
         padding: 5px;
-        font-size: 0.8rem;
+        font-size: 0.95rem;
         font-family: 'Lemonada', cursive;
     }
     .desc {
         float: left;
         width: fit-content;
-        font-size: 1rem;
+        font-size: 1.5rem;
         color: white;
-        font-family: 'Red Hat Text', sans-serif;
+        font-family: 'Lemonada', cursive;
         padding: 5px;
         text-align: left
     }

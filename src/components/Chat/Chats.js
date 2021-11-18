@@ -27,7 +27,6 @@ export default function Chats() {
   useEffect(() => {
     if (!didMountRef.current) {
       didMountRef.current = true
-
       if (!user || user === null) {
         history.push("/home")
         return

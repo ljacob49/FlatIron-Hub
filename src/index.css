@@ -768,3 +768,12 @@ html {
 body{
     background-color: #3b3b3b;
 }
+
+
+/* Learn  */
+
+#search {
+  width: 25% !important;
+  margin-right: 0.25em!important;
+  margin-left: 0.25em!important;
+}

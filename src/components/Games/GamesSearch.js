@@ -14,23 +14,23 @@ function GamesSearch({search, onSearch, sortBy, handleSort}){
 </Search>
 <div style={{justifyContent: 'center', display: 'flex', flexDirection: 'row'}}>
    <strong >Sort by:  </strong>
-   <div class="ui radio checkbox" style={{marginLeft: '8px'}}>
+   <div className="ui radio checkbox" style={{marginLeft: '8px'}}>
       <input 
       type="radio"
       value="title"
       checked={sortBy === "title"}
       onChange={handleSort}
       />
-      <label style={{marginLeft: '8px'}}>Title</label>
+      <label style={{marginLeft: '8px', color: "white", fontSize: 'medium'}}>Title</label>
    </div>
-   <div class="ui radio checkbox" style={{marginLeft: '8px'}}>
+   <div className="ui radio checkbox" style={{marginLeft: '8px'}}>
       <input
       type="radio"
       value="platform"
       checked={sortBy === 'platform'}
       onChange={handleSort}
       />
-      <label style={{marginLeft: '8px'}}>Platform</label>
+      <label style={{marginLeft: '8px', color: "white", fontSize: 'medium'}}>Platform</label>
    </div>
 
     </div>

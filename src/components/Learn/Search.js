@@ -2,8 +2,8 @@ import React from "react";
 
 function Search({searchTerm, onSearchChange}) {
   return (
-    <div className="search-resources">
-    <h3>Search Resources </h3>
+    <div className="ui large fluid icon input">
+    {/* <h3>Search Resources </h3> */}
       <input
         type="text"
         id ="search"
@@ -17,3 +17,4 @@ function Search({searchTerm, onSearchChange}) {
 }
 
 export default Search;
+

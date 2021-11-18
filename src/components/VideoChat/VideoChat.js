@@ -71,12 +71,12 @@ function VideoChat() {
       <NavBar/>
    </div>
    <div id='video-container'>
-      <MarvelDevices deviceName={"ipad"} color={"gray"} orientation={"landscape"} transform={0.5}>
+      <MarvelDevices fluid='false' deviceName={"ipad"} color={"gray"} orientation={"landscape"} transform={0.5}>
          <video className='video-id-ipad' fluid={false} width={100} height={50} ref={remoteVideoRef} />
       </MarvelDevices>
    </div>
    <div id='video2-container'>
-      <MarvelDevices deviceName={"ipad"} color={"gray"} orientation={"landscape"} transform={0.5} >
+      <MarvelDevices fluid='false' deviceName={"ipad"} color={"gray"} orientation={"landscape"} transform={0.5} >
          <video className='video-id-ipad' ref={currentUserVideoRef} />
       </MarvelDevices>
    </div>

@@ -28,8 +28,9 @@ function LearnContainer() {
 
     return (
         <div className= "LearnContainer">
-            <Search searchTerm = {searchTerm} onSearchChange = {setSearchTerm} />
+            <br /> <br />
             <AddLearn onAddLearn = {handleAddLearnItems}/>
+            <Search searchTerm = {searchTerm} onSearchChange = {setSearchTerm} />
             <LearnList 
             learnItems = {displayedLearnItems}/>
         </div>
